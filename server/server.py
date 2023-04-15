@@ -33,7 +33,7 @@ def run_bash_script(data):
     except Exception as e:
         print(f"Error: {e}")
 
-
+    return result.stdout
 # data settings
 data_size = 138 # sending 16 bytes = 128 bits (binary touch states, for example)
 
@@ -60,6 +60,7 @@ print ('Connected to:', client_address)
 count = 0
 
 session = 0
+gesture_recgo = ''
 while True:
     final_data = []
     while True:
@@ -132,15 +133,15 @@ while True:
         csvWriter.writerows(final_data)
     print("file saved")
     if gesture == "testing":
-        loc = "./server"+"/testing_data/"+str(gesture)+"/"+str(gesture)+str(session)+".csv"
-        run_bash_script(loc)
+        loc = "./testing_data/"+str(gesture)+"/"+str(gesture)+str(session)+".csv"
+        gesture_recgo= run_bash_script(loc)
 
-    #test = "Dheeraj"
-    #myobj = {'somekey': 'somevalue'}
-    #url = 'http://172.20.10.2:3000/api/gestures'  # IP address of the other machine running the Flask app
-    #headers = {'Content-type': 'application/json'}
+  
+    myobj = {'gesture': gesture_recgo}
+    url = 'http://172.20.10.2:3000/api/gestures'  # IP address of the other machine running the Flask app
+    headers = {'Content-type': 'application/json'}
     #response = request.post(url, json={'test': test}, headers=headers)
-    #requests.post(url, json = myobj)
+    requests.post(url, json = myobj, headers=headers)
 
 
 server_socket.close()
