@@ -1,0 +1,1 @@
+{"data_dir": "data", "normalisation": true, "batch_size": 8, "test_ratio": 0.1, "data_save_dir": "dataloader", "max_length": 80, "input_size": 12}

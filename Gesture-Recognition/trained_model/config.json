@@ -1,0 +1,1 @@
+{"data_dir": "dataloader", "model_save_dir": "trained_model", "num_layers": 3, "epochs": 100, "evaluation_period": 1, "lr": 0.0001, "weight_decay": 1e-05, "swa": true, "swa_start": 30, "swa_lr": 0.0001, "noise": true, "noise_scale": 0.1, "random_seed": 4, "output_size": 3, "input_size": 80, "hidden_size": 12}
