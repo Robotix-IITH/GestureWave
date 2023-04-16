@@ -30,8 +30,8 @@
 
 #
 
-# How to setup the website
+# setup the website
 
 ### 1) cd watch-ui
-### 2) npm install, to install all the dependencies 
+### 2) npm install, install all the required dependencies from package.json
 ### 3) npm run dev, start the server on port 3000
