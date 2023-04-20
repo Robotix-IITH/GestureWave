@@ -16,6 +16,7 @@ parser.add_argument("--swa",
                     default="False",
                     choices=["True", "False"])
 parser.add_argument("--trained_model_dir", type=str, default="trained_model")
+parser.add_argument("--test_data_dir", type=str, default="test_data")
 
 args = parser.parse_args()
 args.swa = True if args.swa == "True" else False
@@ -40,7 +41,7 @@ model = torch.optim.swa_utils.AveragedModel(model) if args.swa else model
 model.load_state_dict(
     torch.load(os.path.join(args.trained_model_dir, model_name)))
 
-files = os.listdir("test_data")
+files = os.listdir(args.test_data_dir)
 files.sort()
 
 test_target = []
@@ -50,7 +51,7 @@ labels = {"hi": 0, "after": 1, "back": 2}
 
 for loc in files:
     if ".csv" in loc:
-        gesture = np.array(pd.read_csv(os.path.join("test_data", loc)))
+        gesture = np.array(pd.read_csv(os.path.join(args.test_data_dir, loc)))
         output = predict(model, gesture, max_length, args)
 
         loc = loc.split(".")[0]
